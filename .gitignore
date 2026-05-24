@@ -1,0 +1,7 @@
+# ハウジングセンター提供の商業提案資料は公開しない
+*.pdf
+
+# OS / エディタ生成ファイル
+.DS_Store
+Thumbs.db
+desktop.ini

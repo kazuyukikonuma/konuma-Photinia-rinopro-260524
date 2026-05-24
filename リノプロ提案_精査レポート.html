@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フォーティーニアのリフォーム及び今後の管理委託に関して</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --navy:     #0D1B3E;
+  --navy-mid: #1A2E5A;
+  --navy-lit: #2A4480;
+  --blue:     #00569A;
+  --blue-lit: #2A7AB8;
+  --blue-pale:#E5EEF6;
+  --orange:      #E60012;
+  --orange-pale: #FCE5E7;
+  --gold:        #FFD600;
+  --gold-pale:   #FFFCC2;
+  --green:       #009944;
+  --green-pale:  #E2F3E9;
+  --red:         #E60012;
+  --red-pale:    #FCE5E7;
+  --bg:       #F8FAFC;
+  --white:    #FFFFFF;
+  --ink:      #0D1B3E;
+  --ink-mid:  #1A1A1A;
+  --ink-lite: #5B6478;
+  --border:   #D8DEE8;
+  --sidebar-w: 260px;
+}
+
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--ink-mid);
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== サイドバー ========== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--navy);
+  color: #C9D2E3;
+  padding: 24px 0 32px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.sb-logo {
+  padding: 0 18px 14px;
+}
+.sb-logo-img {
+  background: #fff; border-radius: 6px; padding: 6px;
+  margin-bottom: 12px; overflow: hidden;
+}
+.sb-logo-img img { width: 100%; height: auto; display: block; border-radius: 4px; }
+.sb-logo .sb-brand {
+  font-size: 14px; font-weight: 900; color: #fff; letter-spacing: .02em;
+  line-height: 1.5;
+}
+.sb-logo .sb-tag {
+  font-size: 11px; color: #8190AE; margin-top: 4px; letter-spacing: .04em;
+}
+.brand-stripe {
+  display: flex; height: 4px; margin: 12px 18px 22px; border-radius: 2px; overflow: hidden;
+}
+.brand-stripe span { flex: 1; }
+.bs-blue { background: var(--blue); }
+.bs-gold { background: var(--gold); }
+.bs-red  { background: var(--red); }
+
+.sb-nav { list-style: none; }
+.sb-nav li a {
+  display: block;
+  padding: 9px 24px 9px 22px;
+  color: #AAB6CE;
+  text-decoration: none;
+  font-size: 13.5px;
+  border-left: 3px solid transparent;
+  transition: all .15s;
+}
+.sb-nav li a:hover { background: var(--navy-mid); color: #fff; }
+.sb-nav li a.active { background: var(--navy-mid); color: #fff; border-left-color: var(--gold); font-weight: 700; }
+.sb-nav .nav-idx { color: #6E7C9C; font-size: 11px; margin-right: 8px; font-weight: 700; }
+
+.sb-foot {
+  margin-top: 24px; padding: 16px 24px 0; border-top: 1px solid var(--navy-lit);
+  font-size: 11px; color: #6E7C9C; line-height: 1.7;
+}
+
+/* ========== メインエリア ========== */
+.main {
+  margin-left: var(--sidebar-w);
+  padding: 0 0 80px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 44px; }
+
+/* スティッキーヘッダー */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-lit) 100%);
+  border-bottom: 1px solid rgba(155,200,232,.18);
+  height: 46px;
+  display: flex; align-items: center; justify-content: center;
+}
+.topbar-eyebrow {
+  font-size: 12px; letter-spacing: .22em; color: #9BC8E8; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  padding: 0 56px;
+}
+
+/* ヒーロー */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-lit) 100%);
+  color: #fff;
+  padding: 52px 0 46px;
+  margin-bottom: 44px;
+}
+.hero-title { font-size: 30px; font-weight: 900; margin: 0 0 8px; line-height: 1.4; }
+.hero-sub { font-size: 15px; color: #C9D2E3; line-height: 1.6; }
+.hero-meta { margin-top: 22px; font-size: 12px; color: #8190AE; display: flex; gap: 20px; flex-wrap: wrap; }
+.hero-note {
+  margin-top: 24px; background: rgba(255,255,255,.07);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px; font-size: 13.5px; color: #E4E9F2; border-radius: 0 6px 6px 0;
+}
+
+/* セクション */
+.section { margin-bottom: 56px; scroll-margin-top: 64px; }
+.sec-label {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .18em;
+  color: var(--ink-lite); text-transform: uppercase;
+}
+.sec-title {
+  font-size: 25px; font-weight: 900; color: var(--navy);
+  margin: 4px 0 6px; line-height: 1.4;
+}
+.sec-intro { color: var(--ink-lite); font-size: 14px; margin-bottom: 22px; }
+.sub-title {
+  font-size: 18px; font-weight: 700; color: var(--navy);
+  margin: 30px 0 12px; padding-left: 12px; border-left: 4px solid var(--blue);
+}
+.sub-title.green-bar { border-left-color: var(--green); }
+.sub-title.red-bar { border-left-color: var(--red); }
+h4.mini-title { font-size: 15px; font-weight: 700; color: var(--navy); margin: 18px 0 8px; }
+p { margin-bottom: 12px; }
+.section p strong { color: var(--navy); font-weight: 700; }
+
+/* カード */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(13,27,62,.05);
+  overflow: hidden;
+}
+.card-head {
+  padding: 13px 18px;
+  font-weight: 700; font-size: 14.5px; color: var(--navy);
+  border-bottom: 1px solid var(--border);
+  background: #FCFDFE;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-body { padding: 18px; }
+.card-body > p:last-child { margin-bottom: 0; }
+
+/* グリッド */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+/* KPIカード */
+.kpi-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(13,27,62,.05);
+  padding: 16px 18px;
+}
+.kpi-lbl { font-size: 12px; color: var(--ink-lite); font-weight: 700; letter-spacing: .04em; }
+.kpi-num { font-size: 26px; font-weight: 900; color: var(--navy); margin: 4px 0 2px; line-height: 1.2; }
+.kpi-num.blue { color: var(--blue); }
+.kpi-num.green { color: var(--green); }
+.kpi-num.red { color: var(--red); }
+.kpi-sub { font-size: 12px; color: var(--ink-lite); }
+
+/* ノートボックス */
+.note-box {
+  background: var(--blue-pale);
+  border-radius: 8px;
+  padding: 15px 18px;
+  font-size: 14px;
+  border: 1px solid #CFE0EF;
+}
+.note-box em { font-style: normal; font-weight: 700; color: var(--blue); }
+.note-box.orange-note { background: var(--orange-pale); border-color: #F6CDD1; }
+.note-box.orange-note em { color: var(--red); }
+.note-box.green-note { background: var(--green-pale); border-color: #C5E6D3; }
+.note-box.green-note em { color: var(--green); }
+.note-box .nb-title { font-weight: 700; color: var(--navy); display: block; margin-bottom: 4px; }
+
+/* 強調ブロック */
+.result-box, .decision-banner {
+  background: var(--navy);
+  color: #E4E9F2;
+  border-radius: 8px;
+  padding: 26px 28px;
+}
+.result-box em, .decision-banner em {
+  font-style: normal; font-weight: 900; color: #FFE066;
+}
+.result-box .rb-label {
+  font-size: 11.5px; letter-spacing: .16em; color: #9BC8E8; font-weight: 700;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.result-box .rb-big { font-size: 19px; font-weight: 900; color: #fff; line-height: 1.6; }
+
+/* 決断バナー */
+.decision-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--navy-lit) 100%);
+  text-align: center;
+  border: 1px solid rgba(255,214,0,0.25);
+}
+.decision-banner .db-label {
+  font-size: 12px; letter-spacing: .2em; color: #9BC8E8; font-weight: 700;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.decision-banner .db-main {
+  font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1.3;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+.decision-banner .db-sub { font-size: 14px; color: #E4E9F2; }
+
+/* テーブル */
+.tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+table.data-tbl {
+  width: 100%; border-collapse: collapse; background: var(--white); font-size: 13px;
+}
+table.data-tbl th {
+  background: var(--navy); color: #fff; font-weight: 700;
+  padding: 10px 12px; text-align: left; white-space: nowrap;
+}
+table.data-tbl td {
+  padding: 9px 12px; border-bottom: 1px solid #EDF1F6;
+}
+table.data-tbl tr:last-child td { border-bottom: none; }
+table.data-tbl tr.row-total td {
+  background: var(--blue-pale); font-weight: 900; color: var(--navy);
+}
+table.data-tbl tr.row-highlight td {
+  background: var(--gold-pale); font-weight: 700;
+}
+table.data-tbl tr.row-warn td {
+  background: var(--orange-pale);
+}
+table.data-tbl td.num, table.data-tbl th.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data-tbl tbody tr:hover td { background: #F4F8FB; }
+table.data-tbl td.txt-red { color: var(--red); font-weight: 700; }
+table.data-tbl td.txt-green { color: var(--green); font-weight: 700; }
+
+/* チャート */
+.chart-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(13,27,62,.05); padding: 16px 18px;
+}
+.chart-card .cc-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.chart-card .cc-sub { font-size: 11.5px; color: var(--ink-lite); margin-bottom: 12px; }
+.chart-holder { position: relative; width: 100%; }
+.h240 { height: 240px; }
+.h280 { height: 280px; }
+.h320 { height: 320px; }
+.h360 { height: 360px; }
+.h420 { height: 420px; }
+
+/* リスト */
+ul.clean { list-style: none; }
+ul.clean li {
+  position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 13.5px;
+}
+ul.clean li::before {
+  content: ""; position: absolute; left: 4px; top: 11px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+}
+ul.clean.red-bullet li::before { background: var(--red); }
+ul.clean.green-bullet li::before { background: var(--green); }
+ol.steps { padding-left: 25px; }
+ol.steps li { margin-bottom: 8px; font-size: 14px; }
+
+/* 課題カード */
+.issue-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--red); border-radius: 6px;
+  padding: 14px 16px; margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(13,27,62,.05);
+}
+.issue-card .ic-head { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 6px; }
+.issue-card .ic-head::before { content: "⚠ "; color: var(--red); }
+
+/* バッジ・ピル */
+.pill {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 2px 10px; border-radius: 10px; background: var(--blue-pale); color: var(--blue);
+}
+.pill.green { background: var(--green-pale); color: var(--green); }
+.pill.red   { background: var(--red-pale); color: var(--red); }
+.pill.gold  { background: var(--gold-pale); color: #8A6800; }
+
+/* スペーサー */
+.mt8  { margin-top: 8px; }
+.mt16 { margin-top: 16px; }
+.mt24 { margin-top: 24px; }
+.mt32 { margin-top: 32px; }
+.mb16 { margin-bottom: 16px; }
+.divider { height: 1px; background: var(--border); margin: 36px 0; border: none; }
+
+/* フッター */
+.page-footer {
+  margin-top: 50px; padding: 24px 0; border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--ink-lite);
+}
+
+/* レスポンシブ */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform .25s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .hero-title { font-size: 23px; }
+  .menu-btn { display: flex; }
+}
+.menu-btn {
+  display: none; position: fixed; top: 14px; left: 14px; z-index: 200;
+  width: 42px; height: 42px; border-radius: 8px; background: var(--navy);
+  color: #fff; border: none; font-size: 18px; cursor: pointer;
+  align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(13,27,62,.25);
+}
+</style>
+</head>
+<body>
+
+<button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+
+<!-- ========== サイドバー ========== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-img"><img src="フォティーニア　イラスト.png" alt="フォティーニアたまプラーザ"></div>
+    <div class="sb-brand">フォティーニアたまプラーザ<br>213号室</div>
+    <div class="sb-tag">RENOVATION DECISION REPORT</div>
+  </div>
+  <div class="brand-stripe">
+    <span class="bs-blue"></span><span class="bs-gold"></span><span class="bs-red"></span>
+  </div>
+  <ul class="sb-nav" id="sbNav">
+    <li><a href="#summary"><span class="nav-idx">00</span>結論まとめ</a></li>
+    <li><a href="#ch1"><span class="nav-idx">01</span>提案内容の精査</a></li>
+    <li><a href="#ch2"><span class="nav-idx">02</span>家賃想定別の比較</a></li>
+    <li><a href="#ch3"><span class="nav-idx">03</span>違和感の正体</a></li>
+    <li><a href="#ch4"><span class="nav-idx">04</span>最終判断・今後の進め方</a></li>
+  </ul>
+  <div class="sb-foot">
+    作成: 小沼和幸<br>
+    更新: 2026-05-24<br>
+    宛先: 小沼陽子
+  </div>
+</aside>
+
+<main class="main">
+
+<div class="topbar">
+  <div class="topbar-eyebrow">FOR YOKO ／ リノプロ提案精査 ／ 2026-05-24</div>
+</div>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-title">フォーティーニアのリフォーム<br>及び今後の管理委託に関して</h1>
+    <div class="hero-sub">ハウジングセンターの提案書の精査と、多角的な尺度での分析検討の共有</div>
+    <div class="hero-meta">
+      <span>📅 2026年5月24日 作成</span>
+      <span>👤 作成: 小沼和幸</span>
+      <span>📨 宛先: 小沼陽子</span>
+    </div>
+    <div class="hero-note">
+      ハウジングセンターから受領した「リノプロ提案」（工事費704万円＋借上げ）を、収支試算・利益のしくみ・家賃想定別の比較の3面から精査しました。最終的に<em style="color: #FFE066; font-weight: 900;">「リノプロ5年プラン」を第一候補</em>とする結論に至った経緯を共有します。
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ========== 00 サマリー ========== -->
+<section id="summary" class="section">
+  <div class="sec-label">SUMMARY ／ 結論まとめ</div>
+  <h2 class="sec-title">全体のまとめ</h2>
+  <p class="sec-intro">3つの選び方×3つの家賃想定の計9通りを試算した上で、我が家の価値観（海外居住・手離れ最優先・5年は許容・資金余力あり）に照らした結論。</p>
+
+  <div class="decision-banner">
+    <div class="db-label">最終判断</div>
+    <div class="db-main">リノプロ5年（B-3）で進める</div>
+    <div class="db-sub">月6,400円の「手離れ上乗せ料金」で、5年間の完全丸投げと専門家の安心を買う</div>
+  </div>
+
+  <div class="grid-4 mt32">
+    <div class="kpi-card">
+      <div class="kpi-lbl">15年合計手取り（B-3）</div>
+      <div class="kpi-num blue">2,534万円</div>
+      <div class="kpi-sub">家賃を控えめに見立てた前提</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-lbl">最初の支払い</div>
+      <div class="kpi-num green">0円</div>
+      <div class="kpi-sub">工事費は借上げ家賃から月々分割で差し引き</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-lbl">A-5との差額（15年）</div>
+      <div class="kpi-num">-115万円</div>
+      <div class="kpi-sub">月換算 6,383円（手離れの対価）</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-lbl">工事費 交渉目標</div>
+      <div class="kpi-num red">-30万円</div>
+      <div class="kpi-sub">Zoom打合せで値引き交渉</div>
+    </div>
+  </div>
+
+  <div class="note-box mt24 green-note">
+    <span class="nb-title">なぜB-3を選ぶか（3つの理由）</span>
+    <ol style="padding-left: 25px; margin: 6px 0 0;">
+      <li><strong>もらえる金額はほぼ同じ</strong>: A-5（自己資金で頑張るプラン）との差は月6,400円程度。これは「保険料」相当の妥当な水準</li>
+      <li><strong>1〜5年は完全に丸投げできる</strong>: 海外居住中の最も忙しい時期に、運営判断・入居者対応・修繕判断すべてハウジングセンターに任せられる</li>
+      <li><strong>工事の専門性を信頼</strong>: 管理組合との折衝・建材手配・アフターサポートまで一気通貫。海外から業者を変えるリスクを回避</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 01 提案内容の精査 ========== -->
+<section id="ch1" class="section">
+  <div class="sec-label">CHAPTER 01 ／ 提案内容の精査</div>
+  <h2 class="sec-title">提案内容の精査</h2>
+  <p class="sec-intro">工事費704万円の妥当性と、ハウジングセンター試算に含まれる計算ミスを洗い出しました。</p>
+
+  <h3 class="sub-title">1-1. 工事費704万円の内訳と相場比較</h3>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="cc-title">工事費内訳（合計 7,040,000円・税込）</div>
+      <div class="cc-sub">設備機器入替と大工工事で約57%を占める</div>
+      <div class="chart-holder h280"><canvas id="chartCostBreakdown"></canvas></div>
+    </div>
+    <div>
+      <h4 class="mini-title">業界相場との比較</h4>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr><th>スコープ</th><th class="num">相場（72㎡）</th></tr></thead>
+          <tbody>
+            <tr><td>フルリノベーション</td><td class="num">800〜1,200万</td></tr>
+            <tr class="row-highlight"><td><strong>今回スコープ</strong></td><td class="num"><strong>600〜800万</strong></td></tr>
+            <tr><td>表層リフォーム</td><td class="num">350〜500万</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note-box mt16">
+        <span class="nb-title">判定: 相場の範囲内（やや高め）</span>
+        Zoom打合せで <em>30万円程度の値引き交渉</em> を試みる。具体的な根拠は下の表の通り。
+      </div>
+    </div>
+  </div>
+
+  <h4 class="mini-title mt24">値引き交渉の論拠（要確認項目）</h4>
+  <div class="tbl-wrap">
+    <table class="data-tbl">
+      <thead><tr><th>項目</th><th>金額</th><th>問題点</th></tr></thead>
+      <tbody>
+        <tr><td>分電盤交換（河村ELEA4120）</td><td class="num">60,760円</td><td class="txt-red">定価42,600円の143%・定価超え</td></tr>
+        <tr><td>建具LIXILラシッサS各種</td><td class="num">合計約47万</td><td class="txt-red">定価値引き率54%（業界40-50%が普通）</td></tr>
+        <tr><td>収納両面シート貼り</td><td class="num">32,920円/枚×7</td><td>単価高め、検証要</td></tr>
+        <tr class="row-warn"><td>「値引き」98,923円</td><td class="num">▲98,923円</td><td><strong>実質ゼロ円</strong>（端数調整のみ）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title red-bar mt32">1-2. ハウジングセンター試算に含まれる計算ミス</h3>
+
+  <div class="issue-card">
+    <div class="ic-head">重大ミス: リノプロ5年プランで源泉徴収260万円の引き忘れ</div>
+    <p style="font-size: 13.5px; margin-bottom: 8px;">
+      P12下表「手取り収入合計 26,495,930円」は、源泉徴収2,601,098円を最終合計から引き忘れた誤った数値。
+      <strong>正しくは 23,912,652円</strong>（約260万円多く見せている）。
+    </p>
+  </div>
+
+  <div class="chart-card mt16">
+    <div class="cc-title">プランB（リノプロ5年）15年合計手取り: 資料に書かれた数値 vs 正しく計算した数値</div>
+    <div class="chart-holder h240"><canvas id="chartBError"></canvas></div>
+  </div>
+
+  <div class="issue-card mt16">
+    <div class="ic-head">数字のつじつまが合わない: プランA（自己資金）の4箇所</div>
+    <p style="font-size: 13.5px;">6・8年目の源泉徴収605,244円（賃料×20.42%なら539,088円が正しい）、7・9年目の更新料9,900円（他年は賃料×45%＝99,000円）。<strong>4箇所修正で15年合計手取りが +31万円</strong>増加する誤り。</p>
+  </div>
+
+  <div class="note-box mt16 orange-note">
+    <span class="nb-title">教訓</span>
+    ハウジングセンターが出した数値を鵜呑みにせず、独自の「修正版（A-2/B-2/C-2）」を作って比較した。<em>資料の数値は基本的にハウジングセンターに有利な方向に偏っている</em>ことを認識した上で次章の比較に進む。
+  </div>
+</section>
+
+<!-- ========== 02 家賃シナリオ比較 ========== -->
+<section id="ch2" class="section">
+  <div class="sec-label">CHAPTER 02 ／ 家賃想定別の比較</div>
+  <h2 class="sec-title">家賃想定別の収支比較</h2>
+  <p class="sec-intro">3つの選び方 × 3つの家賃想定の計9通りで試算。家賃の見立てによってプランの順位が入れ替わるという重要発見。</p>
+
+  <h3 class="sub-title">2-1. 9通りの収支比較表（15年合計手取り）</h3>
+
+  <div class="tbl-wrap">
+    <table class="data-tbl">
+      <thead>
+        <tr>
+          <th>家賃想定</th>
+          <th class="num">A 自己資金</th>
+          <th class="num">B リノプロ5年</th>
+          <th class="num">C リノプロ10年</th>
+          <th>最強プラン</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>見立てどおり</strong><br><span style="font-size:11px;color:var(--ink-lite)">月22万円</span></td>
+          <td class="num">23,040,454</td>
+          <td class="num">23,912,652</td>
+          <td class="num">24,394,650</td>
+          <td><span class="pill">C リノプロ10年</span></td>
+        </tr>
+        <tr class="row-highlight">
+          <td><strong>控えめな見立て</strong><br><span style="font-size:11px;color:var(--ink-lite)">月23.5万円（+1.5万）</span></td>
+          <td class="num">25,098,591</td>
+          <td class="num"><strong>25,341,583</strong></td>
+          <td class="num">25,179,375</td>
+          <td><span class="pill green">B リノプロ5年</span></td>
+        </tr>
+        <tr>
+          <td><strong>強めの見立て</strong><br><span style="font-size:11px;color:var(--ink-lite)">月25万円（+3万）</span></td>
+          <td class="num"><strong>27,156,408</strong></td>
+          <td class="num">26,770,354</td>
+          <td class="num">25,964,100</td>
+          <td><span class="pill red">A 自己資金</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box mt16 orange-note">
+    <span class="nb-title">重要発見: 家賃の見立てでプランの順位が入れ替わる</span>
+    <ul class="clean" style="margin: 8px 0 0;">
+      <li><strong>見立てどおり（22万）</strong>: C&nbsp;&gt;&nbsp;B&nbsp;&gt;&nbsp;A → ハウジングセンターのシステムが有利</li>
+      <li><strong>控えめな見立て（+1.5万）</strong>: B&nbsp;&gt;&nbsp;C&nbsp;≒&nbsp;A → 我が家はここを採用想定</li>
+      <li><strong>強めの見立て（+3万）</strong>: A&nbsp;&gt;&nbsp;B&nbsp;&gt;&nbsp;C → 自己資金が逆に最も有利</li>
+    </ul>
+    <p style="margin-top: 8px; margin-bottom: 0;">家賃が上振れるほどリノプロのプランは不利になる仕組み。これは <em>「家賃が上振れた取り分をハウジングセンターが取る契約」</em> だから。</p>
+  </div>
+
+  <h3 class="sub-title mt32">2-2. 家賃の違いによる収支の変化（グラフ）</h3>
+
+  <div class="chart-card">
+    <div class="cc-title">家賃想定別の15年合計手取り比較</div>
+    <div class="cc-sub">3つのプランが家賃想定によってどう変化するかを棒グラフで表示</div>
+    <div class="chart-holder h360"><canvas id="chartScenarioMatrix"></canvas></div>
+  </div>
+
+  <h3 class="sub-title green-bar mt32">2-3. なぜ「控えめな見立て」を採用するか</h3>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-head">📊 客観的なデータ</div>
+      <div class="card-body">
+        <ul class="clean">
+          <li>近隣事例の平均家賃: <strong>19.06万円</strong></li>
+          <li>近隣事例の最高値: <strong>21.00万円</strong>（東急ドエル・アルス）</li>
+          <li>ハウジングセンター見立て: <strong>22.00万円</strong> → 近隣最高値超え</li>
+          <li>リフォーム後の上乗せ分: 通常+1〜2万円</li>
+        </ul>
+        <p style="font-size: 13px; margin-top: 10px;"><strong>結論</strong>: 22万円が現実的な範囲で、リフォーム後にもう少し上振れる程度（23.5万円）を控えめな見立てとして採用。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">💭 リスクの考え方</div>
+      <div class="card-body">
+        <p style="font-size: 13px;">強めの見立て（25万円）もあり得るが、海外居住で市場調査の確かさに限界がある。<strong>控えめな見立てで計画を立て、上振れたら追加メリット</strong>と考えるのが心理的に健全。</p>
+        <p style="font-size: 13px;">逆に家賃が予想を下回るリスクもあるが、B（リノプロ）なら借上げ95%が5年間保証されるため、下振れリスクの大部分を回避できる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 03 違和感の正体 ========== -->
+<section id="ch3" class="section">
+  <div class="sec-label">CHAPTER 03 ／ 違和感の正体</div>
+  <h2 class="sec-title">違和感の正体 — ハウジングセンターの利益のしくみ</h2>
+  <p class="sec-intro">「自己資金不要なのに手取りも多い」という提案は経済学的に矛盾する。ハウジングセンターの利益源を解明した。</p>
+
+  <h3 class="sub-title">3-1. 推定: ハウジングセンターの10年利益 約586万円</h3>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="cc-title">ハウジングセンターの10年推定利益</div>
+      <div class="cc-sub">家主には見えない4つの利益源</div>
+      <div class="chart-holder h320"><canvas id="chartHCProfit"></canvas></div>
+    </div>
+    <div>
+      <h4 class="mini-title">利益源の内訳</h4>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr><th>利益源</th><th class="num">推定額</th></tr></thead>
+          <tbody>
+            <tr><td>① 工事の利益（25%相当）</td><td class="num">176万円</td></tr>
+            <tr><td>② 借上げ家賃と実際家賃の差</td><td class="num">240万円</td></tr>
+            <tr><td>③ 礼金・更新料・敷金</td><td class="num">130万円</td></tr>
+            <tr><td>④ 関連サービス</td><td class="num">40万円</td></tr>
+            <tr class="row-total"><td><strong>10年合計</strong></td><td class="num"><strong>586万円</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 12px; color: var(--ink-lite); margin-top: 10px;">家主が「お得」と感じる差額（リノプロ10年 vs 自己資金 +135万円）の<strong>約4〜5倍</strong>をハウジングセンターが取っているしくみ。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title mt32">3-2. 最大の隠れ利益: 借上げ家賃と実際の家賃の差額</h3>
+  <p>ハウジングセンターの「相場22万円」見立ての根拠を、近隣事例から検証。</p>
+
+  <div class="chart-card mt16">
+    <div class="cc-title">近隣物件の家賃事例 vs ハウジングセンター見立て（万円）</div>
+    <div class="cc-sub">ハウジングセンターの見立てはリフォーム前提でも近隣最高値を超える強気</div>
+    <div class="chart-holder h320"><canvas id="chartMarketRent"></canvas></div>
+  </div>
+
+  <div class="note-box mt16 orange-note">
+    <span class="nb-title">こう読み取れる</span>
+    ハウジングセンターが22万円で「貸せる」と見立てている以上、実態は <em>22〜25万円で貸せる可能性が高い</em>。
+    しかし借上げ価格は95%/93%固定なので、<strong>家賃の上振れ分はすべてハウジングセンターの利益</strong>になる。
+    これが借上げビジネスの典型的な仕組み。
+  </div>
+
+  <h3 class="sub-title red-bar mt32">3-3. 表面 vs 実態 まとめ</h3>
+
+  <div class="tbl-wrap">
+    <table class="data-tbl">
+      <thead><tr><th style="width:35%">ハウジングセンターの表面上の説明</th><th>実態</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>「自己資金不要」</strong></td>
+          <td>工事費に利益150-200万円が織り込み済み。相見積もりすれば<strong>50-100万円圧縮可能</strong></td>
+        </tr>
+        <tr>
+          <td><strong>「相場22万円で見立て」</strong></td>
+          <td>近隣事例平均19万円。実際は22-25万円で貸せる可能性、<strong>上振れ分はハウジングセンターの利益</strong></td>
+        </tr>
+        <tr>
+          <td><strong>「空室保証あり」</strong></td>
+          <td>実際に発動するケースは少なく、保証コストは名目的</td>
+        </tr>
+        <tr>
+          <td><strong>「修繕費負担なし」</strong></td>
+          <td>リノプロ工事範囲のみ。<strong>給湯器・配管などは家主負担</strong></td>
+        </tr>
+        <tr>
+          <td><strong>「手離れ運営」</strong></td>
+          <td>家賃上昇の取り分を<strong>全てハウジングセンターに譲渡</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box mt24 green-note">
+    <span class="nb-title">冷静な評価</span>
+    これは <em>詐欺ではなく借上げ業界の標準的な仕組み</em>。
+    ハウジングセンターも適正な利益を取ってビジネスを成立させているだけ。
+    重要なのは「我が家にとって、この対価を払う価値があるか」を判断すること。次章で結論。
+  </div>
+</section>
+
+<!-- ========== 04 最終判断 ========== -->
+<section id="ch4" class="section">
+  <div class="sec-label">CHAPTER 04 ／ 最終判断・今後の進め方</div>
+  <h2 class="sec-title">最終判断と今後の進め方</h2>
+  <p class="sec-intro">A-5（自己資金で頑張るプラン）vs B-3（リノプロ5年）を細かく比較して、最終判断に至った経緯。</p>
+
+  <h3 class="sub-title">4-1. A-5 vs B-3 合計手取りの推移</h3>
+
+  <div class="chart-card">
+    <div class="cc-title">15年間のお金の流れ（合計手取りの推移・控えめな家賃見立て前提）</div>
+    <div class="cc-sub">A-5は1年目に大きくマイナス、4年目末でB-3を追い越す。10年目以降は同じくらい</div>
+    <div class="chart-holder h420"><canvas id="chartA5B3"></canvas></div>
+  </div>
+
+  <div class="grid-3 mt24">
+    <div class="kpi-card">
+      <div class="kpi-lbl">A-5 自己資金で頑張るプラン</div>
+      <div class="kpi-num">26,490,454円</div>
+      <div class="kpi-sub">工事-75万・家賃+1.5万・礼金加算</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-lbl">B-3 リノプロ5年 ★推奨</div>
+      <div class="kpi-num blue">25,341,583円</div>
+      <div class="kpi-sub">家賃+1.5万・1-5年完全に丸投げ</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-lbl">差額（A-5 - B-3）</div>
+      <div class="kpi-num red">+1,148,871円</div>
+      <div class="kpi-sub">月換算 6,383円</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title mt32">4-2. 月6,400円の上乗せ料金で何が買えるか</h3>
+
+  <div class="grid-2">
+    <div>
+      <h4 class="mini-title">B-3が引き受けるリスク（1-5年間）の平均的な発生額</h4>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr><th>リスク項目</th><th class="num">平均的な発生額</th></tr></thead>
+          <tbody>
+            <tr><td>5年目末退去時 空室3ヶ月</td><td class="num">56万円</td></tr>
+            <tr><td>5年目末 原状回復負担</td><td class="num">12万円</td></tr>
+            <tr><td>入居中の中小修繕</td><td class="num">15万円</td></tr>
+            <tr><td>給湯器故障（確率25%）</td><td class="num">5万円</td></tr>
+            <tr><td>入居中の長期空室（10%）</td><td class="num">10万円</td></tr>
+            <tr><td>入居者トラブル（5%）</td><td class="num">2.5万円</td></tr>
+            <tr class="row-total"><td><strong>合計</strong></td><td class="num"><strong>約101万円</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 12px; color: var(--ink-lite); margin-top: 8px;">5年間で起こりうるリスクの平均的な発生額の合計。これをハウジングセンターが引き受けてくれる対価が115万円（15年で）。<strong>金銭面ではほぼ同じ</strong>。</p>
+    </div>
+    <div>
+      <h4 class="mini-title">「月6,400円」の感覚値比較</h4>
+      <div class="tbl-wrap">
+        <table class="data-tbl">
+          <thead><tr><th>サービス</th><th class="num">月額</th></tr></thead>
+          <tbody>
+            <tr><td>Netflix プレミアム</td><td class="num">1,980円</td></tr>
+            <tr><td>火災保険（賃貸用）</td><td class="num">3,000円</td></tr>
+            <tr><td>民間医療保険</td><td class="num">5,000円</td></tr>
+            <tr class="row-highlight"><td><strong>B-3の上乗せ料金</strong></td><td class="num"><strong>6,383円</strong></td></tr>
+            <tr><td>スポーツジム</td><td class="num">8,000円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 12px; color: var(--ink-lite); margin-top: 8px;">月6,400円で「5年間の完全な物件運営丸投げ」が買える。海外居住中の最も忙しい時期の心理的安心としては妥当な水準。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title green-bar mt32">4-3. 工事を任せるメリット（ハウジングセンターに依頼する理由）</h3>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-head">✓ ハウジングセンターに依頼するメリット</div>
+      <div class="card-body">
+        <ul class="clean green-bullet">
+          <li>マンション管理組合との折衝に慣れている（着工3週間前の承認手続き）</li>
+          <li>建材手配・職人手配の段取りが早い</li>
+          <li>建物管理部の大塚さん体制でアフターサポート</li>
+          <li>退去時の引き継ぎがスムーズ</li>
+          <li>不具合発生時のクレーム窓口が明確</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">⚠ 他社に見積もりを取るリスク</div>
+      <div class="card-body">
+        <ul class="clean red-bullet">
+          <li>海外から業者選定・工事の進捗管理をする負担</li>
+          <li>管理組合の折衝を一から実施</li>
+          <li>知らない業者の品質リスク</li>
+          <li>陽子さんに施工立会いを依頼する必要</li>
+          <li>不具合時のクレーム対応も家主自身</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box mt16 green-note">
+    <span class="nb-title">結論: 工事はハウジングセンターに任せる</span>
+    75万円圧縮できる可能性はあるが、海外からの工事管理の負担を考えると割に合わない。<em>値引き交渉で30万円程度の譲歩</em>を引き出せれば御の字。専門家の仕事の価値を評価する。
+  </div>
+
+  <h3 class="sub-title mt32">4-4. 最終決断</h3>
+
+  <div class="decision-banner">
+    <div class="db-label">最終判断</div>
+    <div class="db-main">リノプロ5年（B-3）で進める</div>
+    <div class="db-sub">月6,400円の手離れ上乗せ料金 × 5年間の完全丸投げ × 専門家の信頼</div>
+  </div>
+
+  <h3 class="sub-title mt32">4-5. Zoom打合せで確認・交渉する事項</h3>
+
+  <div class="tbl-wrap">
+    <table class="data-tbl">
+      <thead><tr><th style="width:8%">優先度</th><th>項目</th><th>目的</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill red">高</span></td><td>工事費の値引き交渉</td><td>30万円削減目標（特に分電盤・建具）</td></tr>
+        <tr><td><span class="pill red">高</span></td><td>リノプロ5年中途解約の条件・違約金</td><td>5年内に売却したくなった場合のコスト</td></tr>
+        <tr><td><span class="pill red">高</span></td><td>リノプロ工事範囲外の修繕負担</td><td>給湯器・配管・エアコンは誰負担？</td></tr>
+        <tr><td><span class="pill gold">中</span></td><td>相場家賃22万円の根拠</td><td>近隣事例平均19万円を超える理由</td></tr>
+        <tr><td><span class="pill gold">中</span></td><td>実際にいくらで貸す予定か</td><td>家賃と借上げ価格の差額（透明性確認）</td></tr>
+        <tr><td><span class="pill gold">中</span></td><td>5年契約終了時の選択肢詳細</td><td>再借上げ or 業務管理への移行手順</td></tr>
+        <tr><td><span class="pill">低</span></td><td>礼金・敷金の扱い</td><td>家主取得の交渉余地</td></tr>
+        <tr><td><span class="pill">低</span></td><td>管理組合対応の代行範囲</td><td>HCの代行業務の明文化</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title mt32">4-6. 今後の進め方（時系列）</h3>
+
+  <div class="card">
+    <div class="card-body">
+      <ol class="steps">
+        <li><strong>2026年5月末まで</strong>: 廣田さん宛にメール返信、Zoom打合せ設定</li>
+        <li><strong>Zoom打合せ</strong>: 上記質問リストに基づく確認・値引き交渉</li>
+        <li><strong>契約条件確定</strong>: リノプロ5年契約書を陽子さんと確認</li>
+        <li><strong>管理組合承認手続き</strong>: HC代行で着工3週間前までに完了</li>
+        <li><strong>工事着手</strong>: 6-7月頃</li>
+        <li><strong>工事完了</strong>: 約4ヶ月後、10-11月頃</li>
+        <li><strong>リノプロ借上げ開始</strong>: 工事完了後すぐ（初回免責40日）</li>
+        <li><strong>賃料受領開始</strong>: 月送金 約49,000円 × 60ヶ月</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="result-box mt32">
+    <div class="rb-label">SUMMARY ／ まとめ</div>
+    <div class="rb-big">
+      もらえる金額はほぼ同じ（差は月6,400円） × 1-5年完全に丸投げ × 専門家の安心。<br>
+      海外居住中の意思決定として <em>リノプロ5年が最適解</em>。<br>
+      工事費30万円削減交渉が成立すれば、より満足度の高い契約に。
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <p>本レポートは、ハウジングセンターから受領した提案資料（工事見積もり・補足説明・査定資料）を基に作成した暫定的な分析です。</p>
+  <p>Zoom打合せ後の確認結果に応じて、内容を更新する想定です。</p>
+  <p style="margin-top: 12px;">作成: 小沼和幸 / 2026年5月24日 / フォティーニアたまプラーザ213号室 リフォームPJ</p>
+</footer>
+
+</div>
+</main>
+
+<script>
+Chart.defaults.font.family = "'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif";
+Chart.defaults.color = '#1A1A1A';
+
+const fmt = (v) => v.toLocaleString('ja-JP') + '円';
+const fmtMan = (v) => (v / 10000).toFixed(0) + '万';
+const navy = '#0D1B3E';
+const blue = '#00569A';
+const blueLit = '#2A7AB8';
+const gold = '#FFD600';
+const green = '#009944';
+const red = '#E60012';
+const gray = '#5B6478';
+
+// 1. 工事費内訳
+new Chart(document.getElementById('chartCostBreakdown'), {
+  type: 'bar',
+  data: {
+    labels: ['仮設・解体', '大工工事', '設備機器', '内装工事', '電気工事', '清掃・雑', '消費税'],
+    datasets: [{
+      data: [645080, 1739045, 2306620, 924100, 704720, 179358, 640000],
+      backgroundColor: [gray, blueLit, navy, blue, '#0E8A4A', '#94A3B8', gold],
+      borderRadius: 4
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (c) => fmt(c.parsed.x) } }
+    },
+    scales: { x: { ticks: { callback: (v) => fmtMan(v) } } }
+  }
+});
+
+// 2. B集計エラー
+new Chart(document.getElementById('chartBError'), {
+  type: 'bar',
+  data: {
+    labels: ['B-1（資料の数値・誤り）', 'B-2（正しく計算）'],
+    datasets: [{
+      data: [26495930, 23912652],
+      backgroundColor: [red, green],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (c) => fmt(c.parsed.y) } }
+    },
+    scales: { y: { ticks: { callback: (v) => fmtMan(v) }, beginAtZero: true } }
+  }
+});
+
+// 3. 9シナリオマトリクス
+new Chart(document.getElementById('chartScenarioMatrix'), {
+  type: 'bar',
+  data: {
+    labels: ['査定どおり（22万）', '保守（+1.5万）', '強気（+3万）'],
+    datasets: [
+      {
+        label: 'A 自己資金',
+        data: [23040454, 25098591, 27156408],
+        backgroundColor: gray,
+        borderRadius: 4
+      },
+      {
+        label: 'B リノプロ5年',
+        data: [23912652, 25341583, 26770354],
+        backgroundColor: blue,
+        borderRadius: 4
+      },
+      {
+        label: 'C リノプロ10年',
+        data: [24394650, 25179375, 25964100],
+        backgroundColor: gold,
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + fmt(c.parsed.y) } }
+    },
+    scales: { y: { ticks: { callback: (v) => fmtMan(v) }, beginAtZero: false, min: 22000000 } }
+  }
+});
+
+// 4. HC利益のしくみ
+new Chart(document.getElementById('chartHCProfit'), {
+  type: 'doughnut',
+  data: {
+    labels: [
+      '① 工事の利益 176万円',
+      '② 借上げと実際家賃の差 240万円',
+      '③ 礼金・更新料・敷金 130万円',
+      '④ 関連サービス 40万円'
+    ],
+    datasets: [{
+      data: [176, 240, 130, 40],
+      backgroundColor: [navy, red, blue, gray]
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: (c) => c.label + ' (' + c.parsed + '万円)' } }
+    }
+  }
+});
+
+// 5. 近隣相場
+new Chart(document.getElementById('chartMarketRent'), {
+  type: 'bar',
+  data: {
+    labels: ['グレースオーク', 'レガート', 'ドレッセ', 'シーアイコート', '東急イディオス', 'クレアヒルズ', '東急アルス', 'HC査定'],
+    datasets: [{
+      label: '賃料（万円）',
+      data: [17.50, 18.10, 18.50, 19.00, 19.50, 19.80, 21.00, 22.00],
+      backgroundColor: [gray, gray, gray, gray, gray, gray, gray, red],
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (c) => c.parsed.y + '万円' } }
+    },
+    scales: { y: { beginAtZero: false, min: 15, ticks: { callback: (v) => v + '万円' } } }
+  }
+});
+
+// 6. A-5 vs B-3 累計推移
+new Chart(document.getElementById('chartA5B3'), {
+  type: 'line',
+  data: {
+    labels: ['1年', '2年', '3年', '4年', '5年', '6年', '7年', '8年', '9年', '10年', '11年', '12年', '13年', '14年', '15年'],
+    datasets: [
+      {
+        label: 'A-5 自己資金最適化',
+        data: [-4200944, -2027692, 61364, 2234616, 3446408, 5709552, 7882804, 9971860, 12145112, 13341904, 15993879, 17542554, 20476654, 23542054, 26490454],
+        borderColor: gray,
+        backgroundColor: 'rgba(91,100,120,0.1)',
+        tension: 0.2,
+        borderWidth: 3,
+        pointRadius: 4
+      },
+      {
+        label: 'B-3 リノプロ5年 ★推奨',
+        data: [587880, 1175760, 1763640, 2351520, 2939400, 5112652, 7285904, 9474960, 11648212, 12745004, 15397079, 16945754, 19879854, 22945254, 25341583],
+        borderColor: blue,
+        backgroundColor: 'rgba(0,86,154,0.15)',
+        tension: 0.2,
+        borderWidth: 4,
+        pointRadius: 5
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + fmt(c.parsed.y) } }
+    },
+    scales: {
+      y: { ticks: { callback: (v) => fmtMan(v) } }
+    }
+  }
+});
+
+// サイドバーのactive制御（スクロール連動）
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sb-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 100;
+    if (window.scrollY >= top) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// モバイル: メニューボタン
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>
